@@ -11,7 +11,6 @@ const cardImage = [
   { src: "/Img/sword-1.png", matched: false },
 ];
 
-
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
@@ -19,21 +18,22 @@ function App() {
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
 
-  //Shuffle Cards
+  //Shuffle cards
   const shuffleCards = () => {
     const shuffledCards = [...cardImage, ...cardImage]
-      .sort(() => Math.random - 0.5)
-      .map((card) => ({ ...card, id: Math.random }));
+      .sort(() => Math.random() - 0.5)
+      .map((card) => ({ ...card, id: Math.random() }));
 
+    setChoiceOne(null);
     setChoiceTwo(null);
-    setChoiceTwo(null);
-    setCards(shuffleCards)
+    setCards(shuffledCards);
     setTurns(0);
-  }
+  };
 
+  //Handle Choice
   const handleChoice = (card) => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
-  }
+  };
 
   //Compare 2 selected cards
   useEffect(() => {
